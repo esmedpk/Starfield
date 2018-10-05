@@ -1,15 +1,35 @@
 //your code here
 void setup()
 {
-	//your code here
+	size(500,500);
+	for(int i = 0; i < ; i++)
+	{
+
+	}
 }
 void draw()
 {
-	//your code here
+	background(0);
+
 }
 class NormalParticle
 {
-	//your code here
+	int color;
+	double x,y,speed,angle;
+	NormalParticle(int x, int y) //constructor
+	{
+		myX = x;
+		myY = y;
+
+	}
+	void move()
+	{
+
+	}
+	void show()
+	{
+
+	}
 }
 interface Particle
 {
