@@ -1,4 +1,4 @@
-NormalParticle[] normalParticles = new NormalParticle[1000];
+Particle[] normalParticles = new Particle[1000];
 void setup()
 {
   noStroke();
@@ -7,7 +7,10 @@ void setup()
   {
     normalParticles[i] = new NormalParticle();
   }
+  normalParticles[0] = new JumboParticle();
+  normalParticles[1] = new OddballParticle();
 }
+
 void draw()
 {
   background(0);
@@ -17,7 +20,7 @@ void draw()
     normalParticles[i].move();
   }
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
   double myX,myY,mySpeed,myAngle;
   NormalParticle() //constructor
@@ -43,22 +46,42 @@ class NormalParticle
 }
 interface Particle
 {
-  public void show();
   public void move();
+  public void show();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle//uses an interface
 {
-  public void show()
+  int oddX, oddY;
+  OddballParticle()
   {
-    fill(255,0,0);
-    ellipse((float)myX,(float)myY,15,15);
+    oddX = 0;
+    oddY = 500;
   }
   public void move()
   {
+    oddX = oddX + 1;
+    if(oddX > 500)
+    {
+      oddX = 0;
+    }
+    oddY = oddY - 1;
+    if(oddY < 0)
+    {
+      oddY = 500;
+    }
+  }
+  public void show()
+  {
+    fill(3,160,255);
+    rect((float)oddX,(float)oddY,20,20);
   }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-  //your code here
+  public void show()
+  {
+    fill(255,255,255);
+    ellipse((float)myX, (float)myY, 20, 20);
+  }
 }
 
